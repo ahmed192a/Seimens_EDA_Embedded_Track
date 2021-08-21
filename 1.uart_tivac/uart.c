@@ -48,14 +48,19 @@ void UART_init(const UART_ConfigType *Config_Ptr)
             /* Enable RXE, TXE, UARTEN */
             UART0_CTL_R |= UART_CTL_UARTEN | UART_CTL_TXE | UART_CTL_RXE;
 
-            UART0_IM_R |= UART_IM_RXIM;         // Enable RX Interrupt for UART0
-            NVIC_EN0_R |= NVIC_EN0_UART0_M;    // Enable Interrupt for UART0
+
 
             /* Enable PA0, PA1 as U0RX, U0TX  */
             GPIO_PORTA_PCTL_R = (GPIO_PORTA_PCTL_R&(~(GPIO_PCTL_PA0_M|GPIO_PCTL_PA1_M)))+(GPIO_PCTL_PA0_U0RX|GPIO_PCTL_PA1_U0TX);
             GPIO_PORTA_AFSEL_R |= P0 | P1;                          /* Enable the alternate functions on pin 0, 1 */
             GPIO_PORTA_DEN_R   |= P0 | P1;                          /* Enable Digital on pins 0, 1 */
             GPIO_PORTA_AMSEL_R &= (~P0) & (~P1);                    /* Disable Analog on pins 0, 1 */
+			
+						
+            UART0_IM_R |= UART_IM_RXIM;         // Enable RX Interrupt for UART0
+            NVIC_EN0_R |= NVIC_EN0_UART0_M;    // Enable Interrupt for UART0
+			/********************************** Enabel the I Bit *********************************/
+			Enable_Interrupts();
             break;
 
     }
