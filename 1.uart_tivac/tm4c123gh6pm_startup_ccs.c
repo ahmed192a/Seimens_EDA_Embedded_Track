@@ -33,7 +33,7 @@ void ResetISR(void);
 static void NmiSR(void);
 static void FaultISR(void);
 static void IntDefaultHandler(void);
-extern GPIOF_Handler(void);
+
 //*****************************************************************************
 //
 // External declaration for the reset handler that is to be called when the
@@ -41,7 +41,7 @@ extern GPIOF_Handler(void);
 //
 //*****************************************************************************
 extern void _c_int00(void);
-
+extern void UART0_Handler(void);
 //*****************************************************************************
 //
 // Linker variable that marks the top of the stack.
@@ -88,7 +88,7 @@ void (* const g_pfnVectors[])(void) =
     IntDefaultHandler,                      // GPIO Port C
     IntDefaultHandler,                      // GPIO Port D
     IntDefaultHandler,                      // GPIO Port E
-    IntDefaultHandler,                      // UART0 Rx and Tx
+    UART0_Handler,                      // UART0 Rx and Tx
     IntDefaultHandler,                      // UART1 Rx and Tx
     IntDefaultHandler,                      // SSI0 Rx and Tx
     IntDefaultHandler,                      // I2C0 Master and Slave
@@ -113,7 +113,7 @@ void (* const g_pfnVectors[])(void) =
     IntDefaultHandler,                      // Analog Comparator 2
     IntDefaultHandler,                      // System Control (PLL, OSC, BO)
     IntDefaultHandler,                      // FLASH Control
-    GPIOF_Handler,                      // GPIO Port F
+    IntDefaultHandler,                      // GPIO Port F
     IntDefaultHandler,                      // GPIO Port G
     IntDefaultHandler,                      // GPIO Port H
     IntDefaultHandler,                      // UART2 Rx and Tx

@@ -1,35 +1,19 @@
-/*
- * microconfig.h
- *
- *  Created on: May 31, 2021
- *      Author: ah132
- */
-
 #ifndef MICROCONFIG_H_
 #define MICROCONFIG_H_
-#include <stdbool.h>
-#include <stdint.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <inttypes.h>
-#include <stdarg.h>
+#include "tm4c123gh6pm.h"
 #include <string.h>
-
-#include <tm4c123gh6pm.h>
+#include <stdint.h>
 #include "PLL.h"
-#include "gps.h"
-
-#include "lcd.h"
 #include "uart.h"
-#include "systick.h"
-#include "gpio.h"
-#include "SD.h"
-#include "FAT32.h"
-#include "spi.h"
 
 
 
+#define F_CPU 80000000 /* Internal frequency 80 MHz */
 
+/* Enable IRQ Interrupts by clearing the I bit in the PRIMASK */
+#define Enable_Interrupts()  __asm("    CPSIE I")
+/* Disable IRQ Interrupts by setting the I bit in the PRIMASK */
+#define Disable_Interrupts() __asm("    CPSID I")
 
 
 #endif /* MICROCONFIG_H_ */

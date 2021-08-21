@@ -1,1 +1,1 @@
-"./FAT32.obj" "./PLL.obj" "./SD.obj" "./gpio.obj" "./gps.obj" "./lcd.obj" "./main.obj" "./spi.obj" "./systick.obj" "./tm4c123gh6pm_startup_ccs.obj" "./uart.obj" "../tm4c123gh6pm.cmd" -llibc.a 
+"./PLL.obj" "./main.obj" "./tm4c123gh6pm_startup_ccs.obj" "./uart.obj" "../tm4c123gh6pm.cmd" -llibc.a 

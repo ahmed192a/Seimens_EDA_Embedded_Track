@@ -2427,6 +2427,21 @@
                                             // and may not be modified
 #define GPIO_LOCK_KEY           0x4C4F434B  // Unlocks the GPIO_CR register
 
+
+/*************************************************
+ *
+ * The Following are the defines of GPIO pins
+ *
+ ***********************************************************/
+#define P0 0x00000001
+#define P1 0x00000002
+#define P2 0x00000004
+#define P3 0x00000008
+#define P4 0x00000010
+#define P5 0x00000020
+#define P6 0x00000040
+#define P7 0x00000080
+
 //*****************************************************************************
 //
 // The following are defines for the bit fields in the GPIO_PCTL register for
@@ -11683,6 +11698,8 @@
 //
 //*****************************************************************************
 #define NVIC_EN0_INT_M          0xFFFFFFFF  // Interrupt Enable
+#define NVIC_EN0_UART0_M        0x00000010  // Interrupt Enable Mask for UART0
+#define NVIC_EN0_PORTF_M        0x40000000  // Interrupt Enable Mask for PORTF
 
 //*****************************************************************************
 //
