@@ -1,10 +1,20 @@
+/**
+ * @file main.c
+ * @author Ahmed Moahmed (ahmed.moahmed.eng.25@gmail.com)
+ * @brief  This file contains the main function.
+ * @version 0.1
+ * @date 2022-06-27
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include "tm4c123gh6pm.h"
 #include "microconfig.h"
 /**
- * main.c
+ * @brief  This function is the main function of the program.
+ * 
+ * @return int 
  */
-
-
 int main(void)
 {
     PLL_Init();           /* Set the internal frequency to 80MHz */

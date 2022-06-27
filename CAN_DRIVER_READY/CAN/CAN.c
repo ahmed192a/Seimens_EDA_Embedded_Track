@@ -1,14 +1,13 @@
-/******************************************************************************
- *
- * Module: CAN
- *
- * File Name: CAN.c
- *
- * Description: Source file for CAN driver
- *
- * Author: Ahmed Mohamed
- *
- *******************************************************************************/
+/**
+ * @file CAN.c
+ * @author Ahmed Moahmed (ahmed.moahmed.eng.25@gmail.com)
+ * @brief  This file contains the functions implementation to configure and use the CAN .
+ * @version 0.1
+ * @date 2022-04-17
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 
 
 /*******************************************************************************
@@ -42,11 +41,11 @@ static volatile void (*can1_callBackPtr)(void) = NULL_PTR;
  *                          Function Definitions                               *
  *******************************************************************************/
 
-/******************************************************************************
- * Description : Initialize CAN BIT RATE and its GPIO PINS
- * Arguments   : Can_ConfigType_t *
- * Return      : none
- *****************************************************************************/
+/**
+ * @brief  This function is used to initialize the CAN0 and CAN1.
+ * @param  Can_ConfigType_t *
+ * @return void
+ */
 void CAN_Init(Can_ConfigType_t *Config)
 {
     switch(Config->CAN)
@@ -108,11 +107,12 @@ void CAN_Init(Can_ConfigType_t *Config)
 }
 
 
-/******************************************************************************
- * Description : Initialise the transmit message object
- * Arguments   : Can_ConfigType_t *
- * Return      : none
- *****************************************************************************/
+
+/**
+ * @brief  This function is used to initialize the transmit message object.
+ * @param  Can_ConfigType_t *
+ * @return void
+ */
 void Can_Set_Transmit(Can_ConfigType_t *Config){
     switch(Config->CAN)
     {
@@ -176,11 +176,12 @@ void Can_Set_Transmit(Can_ConfigType_t *Config){
 
 
 
-/******************************************************************************
- * Description : This function sends the data on the TX pin.
- * Arguments   : Can_ConfigType_t * , uint8_t *
- * Return      : none
- *****************************************************************************/
+/**
+ * @brief  This function is used to send the data on the CAN bus.
+ * @param  Can_ConfigType_t *   Can Config Structure
+ * @param  uint8_t *            Data to be sent
+ * @return void
+ */
 void Can_Transmit(Can_ConfigType_t *Config, const uint8_t *DataByte)
 {
 
@@ -310,12 +311,12 @@ void Can_Transmit(Can_ConfigType_t *Config, const uint8_t *DataByte)
 
 
 
-/******************************************************************************
- * Description : Initialize the Receive message object
- * Arguments   : Can_ConfigType_t *
- * Return      : none
- *****************************************************************************/
 
+/**
+ * @brief  Initialize the Receive message object
+ * @param  Config: Pointer to a Can_ConfigType_t structure that contains the configuration information for the CAN module.
+ * @retval None
+ */
 void Can_Set_Receive(Can_ConfigType_t *Config){
     //Initialise the Receive message object
     switch(Config->CAN){
@@ -395,11 +396,13 @@ void Can_Set_Receive(Can_ConfigType_t *Config){
 
 }
 
-/******************************************************************************
- * Description : This function receives the data put on the RX pin.
- * Arguments   : Can_ConfigType_t * , uint8_t *
- * Return      : none
- *****************************************************************************/
+
+/**
+ * @brief This function receives the data put on the RX pin.
+ * @param Config: Pointer to the CAN_ConfigType_t structure.
+ * @param Data: Pointer to the uint8_t array.
+ * @return none
+ */
 void Can_Receive(Can_ConfigType_t *Config,  uint8_t *DataByte)
 {
     switch(Config->CAN)
@@ -479,6 +482,11 @@ void Can_Receive(Can_ConfigType_t *Config,  uint8_t *DataByte)
 /************************************************************************************
                                  Interrupt Handler
  ************************************************************************************/
+/**
+ * @brief This function handles the CAN0 interrupt.
+ * @param none
+ * @return none
+ */
 void CAN0_Handler(void)
 {
     /* CALL BACK FN. */
@@ -491,7 +499,11 @@ void CAN0_Handler(void)
 
 
 
-
+/**
+ * @brief This function handles the CAN1 interrupt.
+ * @param none
+ * @return none
+ */
 void CAN1_Handler(void)
 {
     if(can1_callBackPtr != NULL_PTR)
@@ -504,11 +516,21 @@ void CAN1_Handler(void)
 /************************************************************************************
                                  CALL BACK FUNCTIONS
  ************************************************************************************/
+/**
+ * @brief This function is used to set the call back function for CAN0.
+ * @param callBackPtr: Pointer to the call back function.
+ * @return none
+ */
 void CAN0_setCallBack(void(*a_ptr)(void))
 {
     /* Save the address of the Call back function in a global variable */
     can0_callBackPtr = a_ptr;
 }
+/**
+ * @brief This function is used to set the call back function for CAN1.
+ * @param callBackPtr: Pointer to the call back function.
+ * @return none
+ */
 void CAN1_setCallBack(void(*a_ptr)(void))
 {
     /* Save the address of the Call back function in a global variable */

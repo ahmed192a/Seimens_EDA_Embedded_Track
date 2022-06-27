@@ -1,14 +1,14 @@
- /******************************************************************************
- *
- * Module: CAN
- *
- * File Name: CAN.h
- *
- * Description: Header file for CAN driver
- *
- * Author: Ahmed Mohamed
- *
- *******************************************************************************/
+/**
+ * @file CAN.h
+ * @author Ahmed Moahmed (ahmed.moahmed.eng.25@gmail.com)
+ * @brief  This file contains the functions definition to configure and use the CAN.
+ * @version 0.1
+ * @date 2022-04-17
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
+
 
 #ifndef CAN2_CAN_H_
 #define CAN2_CAN_H_
@@ -19,19 +19,27 @@
 /*******************************************************************************
  *                           SRUCTS & ENUMS                                    *
  *******************************************************************************/
+/**
+ * @brief  enum to select the CAN module
+ */
 typedef enum
 {
     CAN_0,
     CAN_1
 }CAN_type_t;
 
+/**
+ * @brief enum for CAN message ID
+ */
 typedef enum
 {
     Standard,
     Extended
 }MID_type_t;
 
-
+/**
+ * @brief  struct to configure the message of the CAN
+ */
 typedef struct
 {
     uint32_t AcceptID;              /* Acceptance Filtering */
@@ -41,7 +49,9 @@ typedef struct
     uint8_t MessageObjectID;        /* Number of Message Object*/
 }CAN_MSGConfig_t;
 
-
+/**
+ * @brief struct to configure the bitrate of the CAN
+ */
 typedef struct
 {
     uint8_t TSEG2;                  /* TSEG2 = Phase2 - 1 */
@@ -51,7 +61,9 @@ typedef struct
 
 }BitRate_Config_t;
 
-
+/**
+ * @brief struct to hold the CAN configuration
+ */
 typedef struct
 {
     CAN_MSGConfig_t MsgConfig;

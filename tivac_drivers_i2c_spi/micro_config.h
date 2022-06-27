@@ -1,9 +1,14 @@
-/*
- * micro_config.h
- *
- *  Created on: Aug 26, 2021
- *      Author: ah132
+/**
+ * @file micro_config.h
+ * @author Ahmed Moahmed (ahmed.moahmed.eng.25@gmail.com)
+ * @brief 
+ * @version 0.1
+ * @date 2022-08-26
+ * 
+ * @copyright Copyright (c) 2022
+ * 
  */
+
 
 #ifndef MICRO_CONFIG_H_
 #define MICRO_CONFIG_H_

@@ -1,3 +1,13 @@
+/**
+ * @file PLL.h
+ * @author Ahmed Moahmed (ahmed.moahmed.eng.25@gmail.com)
+ * @brief  This file contains the functions declaration to configure and use the PLL.
+ * @version 0.1
+ * @date 2022-06-27
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #ifndef PLL_H_
 #define PLL_H_
 #include "microconfig.h"

@@ -1,3 +1,13 @@
+/**
+ * @file microconfig.h
+ * @author Ahmed Moahmed (ahmed.moahmed.eng.25@gmail.com)
+ * @brief  Microconfiguration file for the Tivac board.
+ * @version 0.1
+ * @date 2022-06-27
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #ifndef MICROCONFIG_H_
 #define MICROCONFIG_H_
 #include "tm4c123gh6pm.h"

@@ -1,3 +1,14 @@
+/**
+ * @file spi.c
+ * @author Ahmed Moahmed (ahmed.moahmed.eng.25@gmail.com)
+ * @brief 
+ * @version 0.1
+ * @date 2022-08-26
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
+
 #include "spi.h"
 
 #define	CS	(1U<<3)		       /* Chip Select(PF.3)*/
@@ -5,23 +16,21 @@
 /*******************************************************************************
  *                       Function Declaration                                  *
  *******************************************************************************/
-
-/******************************************************************************
-  * Description : SPI_EnableChipSelect 
-  * Arguments   : none
-  * Return      : none
-  *****************************************************************************/
-
+/**
+ * @brief  SPI_EnableChipSelect 
+ * @param  none
+ * @retval none
+ */
 void SPI_EnableChipSelect(void)
 {
 	 GPIO_PORTF_DATA_R &= ~CS ;
 }
 
-/******************************************************************************
-  * Description : SPI_DisableChipSelect
-  * Arguments   : none
-  * Return      : none
-  *****************************************************************************/
+/**
+ * @brief  SPI_DisableChipSelect 
+ * @param  none
+ * @retval none
+ */
 void SPI_DisableChipSelect(void)
 {
 	 GPIO_PORTF_DATA_R |= CS ;
@@ -32,7 +41,16 @@ void SPI_DisableChipSelect(void)
   * Arguments   : none
   * Return      : none
   *****************************************************************************/
-
+/**
+ * @brief  SPI_Init 
+ * @param  none
+ * @retval none
+ * 
+ * @note   This function is used to initialize the SPI module.
+ *  		Initialize SSI0 Module, Powers ON, Configures Pins, 
+ * 			Sets up Clock, FIFO length = 1 byte
+ * 			
+ */
 void init_SSI0(void)
 {
     SYSCTL_RCGCSSI_R |= SYSCTL_RCGCSSI_R0;
@@ -67,13 +85,15 @@ void init_SSI0(void)
 	SSI0_CR1_R |= SSI_CR1_SSE ; 	                                           /* Enable SSI*/
 }
 
-
-/******************************************************************************
-  * Description : Transmits a byte of Data
-  * Arguments   : Data to be transmitted (1 byte) 
-  * Return      : Transmitted Byte (required in SD Driver
-  *****************************************************************************/
-
+/**
+ * @brief  SSI_Write 
+ * @param  data
+ * @retval data
+ * 
+ * @note   This function is used to transmit a byte of data.
+ *  		Transmits a byte of data.
+ * 			
+ */
 uint8_t SSI_Write(uint8_t data) 
 {
 	volatile uint8_t rcv_data ;
@@ -85,11 +105,16 @@ uint8_t SSI_Write(uint8_t data)
 }
 
 
-/******************************************************************************
-  * Description : Receive a byte of Data, Transmits out 0xFF (Required in SD Inteface)
-  * Arguments   : Data received (1 byte)
-  * Return      : none
-  *****************************************************************************/
+
+/**
+ * @brief  SPI_Read 
+ * @param  none
+ * @retval data
+ * 
+ * @note   This function is used to receive a byte of data.
+ *  		Receives a byte of data.
+ * 			
+ */
 uint8_t SSI_Read(void) 
 {
   	while((SSI0_SR_R & SSI_SR_TNF)==0)	;  		    /* wait till Tx FIFO FULL*/

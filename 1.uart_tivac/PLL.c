@@ -1,6 +1,20 @@
+/**
+ * @file PLL.c
+ * @author Ahmed Moahmed (ahmed.moahmed.eng.25@gmail.com)
+ * @brief  This file contains the functions implementation to configure and use the PLL.
+ * @version 0.1
+ * @date 2022-06-27
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include "PLL.h"
 	
-
+/**
+ * @brief  Configure the PLL to work on the desired frequency.
+ * @param  void
+ * @return void
+ */
 void PLL_Init(void)
 {
     /* 1) Configure the system to use RCC2 for advanced features

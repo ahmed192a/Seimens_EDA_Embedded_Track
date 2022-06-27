@@ -1,14 +1,25 @@
+/**
+ * @file uart.c
+ * @author Ahmed Moahmed (ahmed.moahmed.eng.25@gmail.com)
+ * @brief  This file contains the functions implementation to configure and use the UART .
+ * @version 0.1
+ * @date 2022-06-27
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include "uart.h"
 
 
 /*******************************************************************************
  *                      Function Declaration                                   *
  *******************************************************************************/
-/************************************************************************************************
- * Description : Function to initialize the UART
- * Arguments   : Pointer to a struct contains (no. of data bits, parity mode, UART num, baudrate)
- * Return      : none
- ************************************************************************************************/
+/*******************************************************************************
+ * @brief  This function initializes the UART.
+ * @param  Config_Ptr : Pointer to a struct contains
+ *                      (no. of data bits, parity mode, UART num, baudrate)
+ * @return void
+ *******************************************************************************/
 void UART_init(const UART_ConfigType *Config_Ptr)
 {
     double uart_clk = F_CPU / (16 * Config_Ptr->baudrate);
@@ -68,14 +79,16 @@ void UART_init(const UART_ConfigType *Config_Ptr)
 }
 
 
-/************************************************************************************************
- * Description : Function to send a data to another device (max 1 byte)
- * Arguments   : data to be sent, the UART number
- * Return      : none
- ************************************************************************************************/
-void UART_sendByte(const uint8_t data, UART_NUMBER num)
+
+/*******************************************************************************
+ * @brief  This function sends a data to another device. (max 1 byte)
+ * @param  data : Data to be sent
+ * @param  uart_num : UART number
+ * @return void
+ *******************************************************************************/
+void UART_sendByte(const uint8_t data, UART_NUMBER uart_num)
 {
-    if(num == u0)
+    if(uart_num == u0)
     {
         while((UART0_FR_R &UART_FR_TXFF) != 0);   /* wait until fifo is not full, 0-> not full*/
         UART0_DR_R = data;
@@ -84,14 +97,15 @@ void UART_sendByte(const uint8_t data, UART_NUMBER num)
 }
 
 
-/************************************************************************************************
- * Description : Function to receive a data from another device
- * Arguments   : the UART number
- * Return      : the received data
- ************************************************************************************************/
-uint8_t UART_recieveByte(UART_NUMBER num)
+/*******************************************************************************
+ * @brief Function to receive a data from another device
+ * 
+ * @param uart_num : UART number
+ * @return uint8_t  : the received data or 0 if no data is received
+ *******************************************************************************/
+uint8_t UART_recieveByte(UART_NUMBER uart_num)
 {
-    if(num == u0)
+    if(uart_num == u0)
     {
         while((UART0_FR_R&UART_FR_RXFE) != 0);      // wait until RXFE is 0
         return((char)(UART0_DR_R&UART_DR_DATA_M));
@@ -99,13 +113,16 @@ uint8_t UART_recieveByte(UART_NUMBER num)
     return 0;
 }
 
-/************************************************************************************************
- * Description : Interrupt service routine for UART0
- *               Receives character and if it's small Alphabet then send the capital character and
- *               if it's anything else send the successive char
- * Arguments   : void
- * Return      : void
- ************************************************************************************************/
+
+/*******************************************************************************
+ * @brief  This function is the ISR for UART0.
+ * @param  void
+ * @return void
+ * @note   This function is called when UART0 receives a character.
+ *          It checks if the received character is small alphabet and if it is then it sends the
+ *          capital character and if it's anything else it sends the successive character.
+ *
+ *******************************************************************************/
 void UART0_Handler(void){
     UART0_ICR_R |= UART_ICR_RXIC;
     uint8_t c;
